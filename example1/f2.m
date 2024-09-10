@@ -1,0 +1,13 @@
+function result=f2(t,X,Y,alpha,nu)
+Nx=length(X); Ny=length(Y);
+result=zeros(Nx,Ny);
+Xmesh=kron(ones(Ny,1),X);
+Ymesh=kron(ones(1,Nx),Y(:));
+
+result=-(2/gamma(3-alpha)*power(t,2-alpha)+gamma(1+alpha))*(sin(Ymesh).^2).*sin(2*Xmesh)...
+    +power(t^2+t^alpha+1,2)*(sin(Ymesh).^2).*sin(2*Ymesh).*(sin(2*Xmesh).^2)...
+    -2*power(t^2+t^alpha+1,2)*(sin(Xmesh).^2).*cos(2*Xmesh).*(sin(Ymesh).^2).*sin(2*Ymesh)...
+    +nu*(2*(t^2+t^alpha+1)*cos(2*Ymesh)-4*(t^2+t^alpha+1)*(sin(Ymesh).^2)).*sin(2*Xmesh)...
+    +(t^2+t^alpha+1)^2*cos(Xmesh).*cos(Ymesh);
+
+end
